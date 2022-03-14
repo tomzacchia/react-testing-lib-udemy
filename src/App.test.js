@@ -3,6 +3,9 @@ import App from "./App";
 
 test("renders learn react link", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn testing library/i);
+  // <a/> elements have the built in role of "link"
+  const linkElement = screen.getByRole("link", {
+    name: /learn testing library/i,
+  });
   expect(linkElement).toBeInTheDocument();
 });
