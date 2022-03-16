@@ -1,21 +1,24 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
 
-// 2. Write test that fails
+/**
+ * As a general rule of thumb we should aim to have one assertion per test
+ * however for functional testing it is not common to have multiple
+ * i.e user clicks on button, we expect some change and test the assertion
+ */
 test("button has correct initial color", () => {
-  // render component
   render(<App />);
 
-  // get element by accessibility handler
-  // this tests that it 1) renders 2) has proper text
-  /**
-   * screen.getByRole(role, options)
-   * {name: 'some string'} can either be a form label, text in a button or aria-label
-   * https://testing-library.com/docs/queries/byrole/
-   */
   const button = screen.getByRole("button", { name: /change to blue/i });
 
+  // 1st assertion
   expect(button).toHaveStyle({ backgroundColor: "red" });
-});
 
-test("button turns blue when clicked", () => {});
+  fireEvent.click(button);
+
+  // 2nd assertion
+  // when an assertion fails, the rest of the test doesnt run
+  expect(button).toHaveStyle({ backgroundColor: "blue" });
+  expect(button).toHaveTextContent(/change to red/i);
+  // expect(button.textContent).toBe(/change to red/i);
+});
