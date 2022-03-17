@@ -26,3 +26,22 @@ test("initial condition", () => {
   const checkbox = screen.getByRole("checkbox");
   expect(checkbox).not.toBeChecked();
 });
+
+/**
+ * Spec: 1) When checkbox is unchecked the button is enabled
+ *       2) when checkbox is checked the button is disabled
+ */
+test("checkbox disables and enabled button", () => {
+  render(<App />);
+
+  const button = screen.getByRole("button", { name: /change to blue/i });
+  const checkbox = screen.getByRole("checkbox");
+
+  // first click, checkbox is checked
+  fireEvent.click(checkbox);
+  expect(button).toBeDisabled();
+
+  // first click, checkbox is unchecked
+  fireEvent.click(checkbox);
+  expect(button).toBeEnabled();
+});
