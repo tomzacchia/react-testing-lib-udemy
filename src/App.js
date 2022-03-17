@@ -10,9 +10,12 @@ function App() {
   }
 
   return (
-    <button onClick={clickHandler} style={{ backgroundColor: bgColor }}>
-      change to {newBgColor}
-    </button>
+    <>
+      <button onClick={clickHandler} style={{ backgroundColor: bgColor }}>
+        change to {newBgColor}
+      </button>
+      <input type="checkbox" />
+    </>
   );
 }
 
