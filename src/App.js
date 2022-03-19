@@ -21,11 +21,13 @@ function App() {
       </button>
       <input
         type="checkbox"
+        id="disabled-button-checkbox"
         // NOTE: to indicate whether or not checkbox is checked to screen-reader
         defaultChecked={isButtonDisabled}
         aria-checked={isButtonDisabled}
         onClick={(e) => setIsButtonDisabled(e.target.checked)}
       />
+      <label htmlFor="disabled-button-checkbox">Disabled button</label>
     </>
   );
 }
