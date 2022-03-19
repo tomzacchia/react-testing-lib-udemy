@@ -5,6 +5,7 @@ function App() {
   const [bgColor, setBgColor] = useState("red");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const newBgColor = bgColor === "red" ? "blue" : "red";
+  const btnBgColor = isButtonDisabled ? "grey" : bgColor;
 
   function clickHandler() {
     setBgColor(newBgColor);
@@ -14,7 +15,7 @@ function App() {
     <>
       <button
         onClick={clickHandler}
-        style={{ backgroundColor: bgColor }}
+        style={{ backgroundColor: btnBgColor }}
         disabled={isButtonDisabled}
       >
         change to {newBgColor}
@@ -27,7 +28,7 @@ function App() {
         aria-checked={isButtonDisabled}
         onClick={(e) => setIsButtonDisabled(e.target.checked)}
       />
-      <label htmlFor="disabled-button-checkbox">Disabled button</label>
+      <label htmlFor="disabled-button-checkbox">disable button</label>
     </>
   );
 }

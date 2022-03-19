@@ -31,11 +31,22 @@ test("checkbox disables on first click and enables on second click", () => {
   const button = screen.getByRole("button", { name: /change to blue/i });
   // NOTE: When using name option with getByRole("checkbox"), react-testing-lib
   // knows to look for label associated with checkbox
-  const checkbox = screen.getByRole("checkbox", { name: /disabled button/i });
+  const checkbox = screen.getByRole("checkbox", { name: /disable button/i });
 
   fireEvent.click(checkbox);
   expect(button).toBeDisabled();
 
   fireEvent.click(checkbox);
   expect(button).toBeEnabled();
+});
+
+test("button background turns grey when disabled", () => {
+  render(<App />);
+
+  const button = screen.getByRole("button", { name: /change to blue/i });
+  const checkbox = screen.getByRole("checkbox", { name: /disable button/i });
+
+  // disabled button --> button is gray --> enable button --> button is red
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle({ backgroundColor: "grey" });
 });
