@@ -1,24 +1,39 @@
-import logo from "./logo.svg";
+import { useState } from "react";
 import "./App.css";
 
+export function replaceCamelWithSpace(colorName) {
+  return colorName.replace(/\B([A-Z])\B/g, " $1");
+}
+
 function App() {
+  const [bgColor, setBgColor] = useState("red");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const newBgColor = bgColor === "red" ? "blue" : "red";
+  const btnBgColor = isButtonDisabled ? "grey" : bgColor;
+
+  function clickHandler() {
+    setBgColor(newBgColor);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn testing library
-        </a>
-      </header>
-    </div>
+    <>
+      <button
+        onClick={clickHandler}
+        style={{ backgroundColor: btnBgColor }}
+        disabled={isButtonDisabled}
+      >
+        change to {newBgColor}
+      </button>
+      <input
+        type="checkbox"
+        id="disabled-button-checkbox"
+        // NOTE: to indicate whether or not checkbox is checked to screen-reader
+        defaultChecked={isButtonDisabled}
+        aria-checked={isButtonDisabled}
+        onClick={(e) => setIsButtonDisabled(e.target.checked)}
+      />
+      <label htmlFor="disabled-button-checkbox">disable button</label>
+    </>
   );
 }
 
