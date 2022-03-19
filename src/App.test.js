@@ -31,7 +31,7 @@ test("initial condition", () => {
  * Spec: 1) When checkbox is unchecked the button is enabled
  *       2) when checkbox is checked the button is disabled
  */
-test("checkbox disables and enabled button", () => {
+test("checkbox disables on first click and enables on second click", () => {
   render(<App />);
 
   const button = screen.getByRole("button", { name: /change to blue/i });
