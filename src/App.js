@@ -21,6 +21,9 @@ function App() {
       </button>
       <input
         type="checkbox"
+        // NOTE: to indicate whether or not checkbox is checked to screen-reader
+        defaultChecked={isButtonDisabled}
+        aria-checked={isButtonDisabled}
         onClick={(e) => setIsButtonDisabled(e.target.checked)}
       />
     </>
